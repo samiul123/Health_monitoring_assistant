@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context="com.example.samiu.health_monitoring_assistant.LogInActivity">
+
+    <EditText
+        android:id="@+id/logInEmailID"
+        android:layout_width="339dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginStart="50dp"
+        android:drawableStart="@drawable/ic_action_email"
+        android:background="@drawable/shapebutton"
+        android:ems="10"
+        android:hint="@string/emailHint"
+        android:inputType="textEmailAddress"
+        android:textAlignment="textStart"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColorHint="@color/place_autocomplete_prediction_secondary_text"
+        android:textCursorDrawable="@drawable/cursor_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.469" />
+
+    <EditText
+        android:id="@+id/logInPassID"
+        android:layout_width="339dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginStart="50dp"
+        android:background="@drawable/shapebutton"
+        android:ems="10"
+        android:drawableStart="@drawable/ic_action_lock"
+        android:hint="@string/passHint"
+        android:inputType="textPassword"
+        android:textAlignment="textStart"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColorHint="@color/place_autocomplete_prediction_secondary_text"
+        android:textCursorDrawable="@drawable/cursor_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.597" />
+
+    <Button
+        android:id="@+id/logInBtnID"
+        android:layout_width="339dp"
+        android:layout_height="56dp"
+        android:background="@drawable/loginbuttonbg"
+        android:text="Log in"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.511"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.827" />
+    <com.shobhitpuri.custombuttons.GoogleSignInButton
+        android:layout_width="339dp"
+        android:layout_height="56dp"
+        android:id="@+id/googleBtn"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:isDarkTheme="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.511"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.968">
+
+    </com.shobhitpuri.custombuttons.GoogleSignInButton>
+
+    <ImageView
+        android:contentDescription="@null"
+        android:id="@+id/imageView"
+        android:layout_width="230dp"
+        android:layout_height="141dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/health"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.073"/>
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "693047367506",
+    "firebase_url": "https://healthmonitoringassistan-b68d2.firebaseio.com",
+    "project_id": "healthmonitoringassistan-b68d2",
+    "storage_bucket": "healthmonitoringassistan-b68d2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:693047367506:android:533e58a7cf1247f4",
+        "android_client_info": {
+          "package_name": "com.example.samiu.health_monitoring_assistant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "693047367506-41ev4ksihk6gt20d2bfana0rfsb33g2s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.samiu.health_monitoring_assistant",
+            "certificate_hash": "1be58ef80e2c51934ed08ec546ec891a2a674992"
+          }
+        },
+        {
+          "client_id": "693047367506-4qgsi6teigu0ptrv6v9k0vq2t3v68h7s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAC7VfWlvLuuaV32G_pKTL3PkZ__qQXsQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "693047367506-4qgsi6teigu0ptrv6v9k0vq2t3v68h7s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
