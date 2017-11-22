@@ -5,7 +5,7 @@ android {
     buildToolsVersion "26.0.1"
     defaultConfig {
         applicationId "com.example.samiu.health_monitoring_assistant"
-        minSdkVersion 17
+        minSdkVersion 21
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -36,6 +36,7 @@ dependencies {
     compile 'com.google.firebase:firebase-storage:11.6.0'
     compile 'com.shobhitpuri.custombuttons:google-signin:1.0.0'
 }
+
 
 
 
