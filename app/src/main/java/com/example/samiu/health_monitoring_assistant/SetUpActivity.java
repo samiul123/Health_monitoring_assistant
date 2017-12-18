@@ -13,8 +13,11 @@ import android.widget.ImageButton;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -29,9 +32,11 @@ public class SetUpActivity extends AppCompatActivity {
     private Uri imageUri = null;
     public static int GALLERY_REQUEST = 1;
     private FirebaseAuth mAuth;
-    private DatabaseReference mDatabase;
+    private DatabaseReference mDatabase,mDatabase2;
     private StorageReference mStorage;
     private ProgressDialog mDialogue;
+    String type;
+    String mobileNo,token, ownMobile, relativeDeviceToken;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +65,15 @@ public class SetUpActivity extends AppCompatActivity {
                 startActivityForResult(galleryIntent, GALLERY_REQUEST);
             }
         });
+
+        Intent received_intent = getIntent();
+        type = received_intent.getStringExtra("type");
+        mobileNo = received_intent.getStringExtra("mobileNo");
+        token = received_intent.getStringExtra("token");
+        ownMobile = received_intent.getStringExtra("ownMobile");
+
+
+
     }
 
     private void startSetupAccount() {
@@ -68,6 +82,30 @@ public class SetUpActivity extends AppCompatActivity {
         if(!TextUtils.isEmpty(display_name) && imageUri != null){
             mDialogue.setMessage("Finishing setup...");
             mDialogue.show();
+
+            System.out.println("relative mobile: " + mobileNo);
+            System.out.println("own mobile: " + ownMobile);
+            mDatabase2 = FirebaseDatabase.getInstance().getReference().child("Users");
+            mDatabase2.orderByChild("ownMobileNo").equalTo(mobileNo).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    //relativeDeviceToken = (String) dataSnapshot.getValue();
+                    for(DataSnapshot child: dataSnapshot.getChildren()){
+                        for(DataSnapshot childOfChild: child.getChildren()){
+                            if(childOfChild.getKey().equals("ownDeviceToken")){
+                                relativeDeviceToken = (String) childOfChild.getValue();
+                                System.out.println("RELATIVE" + relativeDeviceToken);
+                            }
+                        }
+                        System.out.println(child.getKey());
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
             StorageReference filePath = mStorage.child(imageUri.getLastPathSegment());
             filePath.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
@@ -75,8 +113,13 @@ public class SetUpActivity extends AppCompatActivity {
                     String downLoadUri = taskSnapshot.getDownloadUrl().toString();
                     mDatabase.child(user_id).child("name").setValue(display_name);
                     mDatabase.child(user_id).child("image").setValue(downLoadUri);
+                    mDatabase.child(user_id).child("type").setValue(type);
+                    mDatabase.child(user_id).child("relativeMobileNo").setValue(mobileNo);
+                    mDatabase.child(user_id).child("ownDeviceToken").setValue(token);
+                    mDatabase.child(user_id).child("ownMobileNo").setValue(ownMobile);
+                    mDatabase.child(user_id).child("relativeDeviceToken").setValue(relativeDeviceToken);
                     mDialogue.dismiss();
-                    Intent mainIntent = new Intent(SetUpActivity.this, MainActivity.class);
+                    Intent mainIntent = new Intent(SetUpActivity.this, HomeActivity.class);
                     mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(mainIntent);
                 }

@@ -7,6 +7,46 @@
     android:background="@drawable/background"
     tools:context="com.example.samiu.health_monitoring_assistant.RegisterActivity">
 
+    <EditText
+        android:id="@+id/ownMobileNo"
+        android:layout_width="361dp"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_action_name"
+        android:ems="10"
+        android:hint="   Enter any of your mobile no"
+        android:inputType="textPersonName"
+        android:textAlignment="textStart"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#FFF"
+        android:textColorHint="@color/place_autocomplete_prediction_secondary_text"
+        android:textCursorDrawable="@drawable/cursor_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.521"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.775" />
+
+    <EditText
+        android:id="@+id/relativeMobileNo"
+        android:layout_width="361dp"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_action_name"
+        android:ems="10"
+        android:hint="   Enter any of your relative\'s mobile no"
+        android:inputType="textPersonName"
+        android:textAlignment="textStart"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#FFF"
+        android:textColorHint="@color/place_autocomplete_prediction_secondary_text"
+        android:textCursorDrawable="@drawable/cursor_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.521"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.639" />
+
     <Button
         android:id="@+id/signUpBtnID"
         android:layout_width="match_parent"
@@ -19,15 +59,16 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.812" />
+        app:layout_constraintVertical_bias="0.92" />
 
     <EditText
         android:id="@+id/editNameID"
         android:layout_width="361dp"
         android:layout_height="wrap_content"
-        android:drawableStart="@drawable/person"
+        android:drawableStart="@drawable/ic_action_person"
         android:ems="10"
         android:hint="   Name"
+        android:textColor="#FFF"
         android:inputType="textPersonName"
         android:textAlignment="textStart"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
@@ -35,18 +76,18 @@
         android:textColorHint="@color/place_autocomplete_prediction_secondary_text"
         android:textColorLink="@color/cast_libraries_material_featurehighlight_text_body_color"
         android:textCursorDrawable="@drawable/cursor_color"
-        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.521"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.258" />
+        app:layout_constraintVertical_bias="0.08" />
     <EditText
         android:id="@+id/editPassID"
         android:layout_width="361dp"
-        android:layout_height="wrap_content"
+        android:layout_height="58dp"
         android:ems="10"
+        android:textColor="#FFF"
         android:inputType="textPassword"
         android:textColorHint="@color/place_autocomplete_prediction_secondary_text"
         android:textCursorDrawable="@drawable/cursor_color"
@@ -54,29 +95,62 @@
         android:hint="   Password"
         android:textAlignment="textStart"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.521"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-    <EditText
-        android:id="@+id/editEmailID"
-        android:layout_width="361dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:drawableStart="@drawable/ic_action_email"
-        android:inputType="textEmailAddress"
-        android:textColorHint="@color/place_autocomplete_prediction_secondary_text"
-        android:textCursorDrawable="@drawable/cursor_color"
-        android:hint="  Email"
-        android:textAlignment="textStart"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.521"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.38" />
+        app:layout_constraintVertical_bias="0.35" />
+    <EditText
+        android:id="@+id/editEmailID"
+        android:layout_width="361dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:textColor="#FFF"
+        android:drawableStart="@drawable/ic_action_email"
+        android:inputType="textEmailAddress"
+        android:textColorHint="@color/place_autocomplete_prediction_secondary_text"
+        android:textCursorDrawable="@drawable/cursor_color"
+        android:hint="   Email"
+        android:textAlignment="textStart"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.521"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.211" />
+
+    <EditText
+        android:id="@+id/userTypeId"
+        android:layout_width="361dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:textColor="#FFF"
+        android:drawableStart="@drawable/ic_action_type"
+        android:inputType="textPersonName"
+        android:textColorHint="@color/place_autocomplete_prediction_secondary_text"
+        android:textCursorDrawable="@drawable/cursor_color"
+        android:hint="   User type"
+        android:textAlignment="textStart"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.521"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <!--<ImageButton
+        android:id="@+id/imageButtonID"
+        android:contentDescription="@null"
+        android:tooltipText="Click to add your profile pic"
+        android:layout_width="156dp"
+        android:layout_height="100dp"
+        android:src="@android:drawable/ic_menu_add"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.063" />-->
 </android.support.constraint.ConstraintLayout>

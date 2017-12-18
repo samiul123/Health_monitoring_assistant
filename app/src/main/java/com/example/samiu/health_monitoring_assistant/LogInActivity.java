@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -25,6 +26,7 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.GoogleApi;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
@@ -36,11 +38,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.shobhitpuri.custombuttons.GoogleSignInButton;
 
 public class LogInActivity extends Activity {
 
     EditText logInEmail, logInPass;
+    TextView needAccount;
     Button logIn;
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabaseUsers;
@@ -58,17 +62,25 @@ public class LogInActivity extends Activity {
         mDatabaseUsers.keepSynced(true);
         mDialogue = new ProgressDialog(this);
         logInEmail = findViewById(R.id.logInEmailID);
-        logInEmail.setPadding(45, 0, 0, 0);
+        //logInEmail.setPadding(45, 0, 0, 0);
         logInPass = findViewById(R.id.logInPassID);
-        logInPass.setPadding(45, 0, 0, 0);
+        //logInPass.setPadding(45, 0, 0, 0);
 
-        mGoogleBtn = findViewById(R.id.googleBtn);
+        needAccount = findViewById(R.id.needAccountId);
+        needAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent regIntent = new Intent(LogInActivity.this, RegisterActivity.class);
+                startActivity(regIntent);
+            }
+        });
+        /*mGoogleBtn = findViewById(R.id.googleBtn);
         mGoogleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 signIn();
             }
-        });
+        });*/
         logIn = findViewById(R.id.logInBtnID);
         logIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,12 +90,12 @@ public class LogInActivity extends Activity {
         });
 
         // Configure Google Sign In
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+        /*GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
 
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);*/
     }
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
@@ -117,29 +129,29 @@ public class LogInActivity extends Activity {
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d("success", "signInWithCredential:success");
-                            //FirebaseUser user = mAuth.getCurrentUser();
-                            //updateUI(user);
-                            Toast.makeText(getApplicationContext(), "success", Toast.LENGTH_SHORT).show();
-                            mDialogue.dismiss();
-                            checkUserExist();
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w("failure", "signInWithCredential:failure", task.getException());
-                            Toast.makeText(LogInActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                            //updateUI(null);
-                            mDialogue.dismiss();
-                        }
+            .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d("success", "signInWithCredential:success");
+                    //FirebaseUser user = mAuth.getCurrentUser();
+                    //updateUI(user);
+                    Toast.makeText(getApplicationContext(), "success", Toast.LENGTH_SHORT).show();
+                    mDialogue.dismiss();
+                    checkUserExist();
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Log.w("failure", "signInWithCredential:failure", task.getException());
+                    Toast.makeText(LogInActivity.this, "Authentication failed.",
+                            Toast.LENGTH_SHORT).show();
+                    //updateUI(null);
+                    mDialogue.dismiss();
+                }
 
-                        // ...
-                    }
-                });
+                // ...
+                }
+            });
     }
 
     private void checkLogIn() {
@@ -154,11 +166,19 @@ public class LogInActivity extends Activity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
                         mDialogue.dismiss();
-                        checkUserExist();
+                        String device_token = FirebaseInstanceId.getInstance().getToken();
+                        String user_id = mAuth.getCurrentUser().getUid();
+                        mDatabaseUsers.child(user_id).child("ownDeviceToken").setValue(device_token).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                checkUserExist();
+                            }
+                        });
+
                     }
                     else{
                         mDialogue.dismiss();
-                        Toast.makeText(getApplicationContext(), "Error log in", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "You are not registered yet", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -172,9 +192,9 @@ public class LogInActivity extends Activity {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if(dataSnapshot.hasChild(user_id)){
-                        Intent logInIntent = new Intent(LogInActivity.this, MainActivity.class);
-                        logInIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(logInIntent);
+                        Intent mainIntent = new Intent(LogInActivity.this, HomeActivity.class);
+                        mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(mainIntent);
                     }
                     else{
                         Intent setUpIntent = new Intent(LogInActivity.this, SetUpActivity.class);
@@ -189,5 +209,10 @@ public class LogInActivity extends Activity {
                 }
             });
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

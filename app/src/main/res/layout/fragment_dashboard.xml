@@ -1,0 +1,130 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@drawable/background"
+    tools:context="com.example.samiu.health_monitoring_assistant.DashboardFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textColor="#FFF"-->
+        <!--android:textSize="22sp"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:layout_marginStart="65dp"-->
+        <!--android:drawableStart="@drawable/ic_action_dashboard"-->
+        <!--android:text="Your dashboard" />-->
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=" ECG signal"
+        android:textSize="18sp"
+        android:drawableStart="@drawable/icons8_ecg_26"
+        android:textColor="#FFF"
+        android:layout_marginTop="10dp" />
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/lineChartId"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_height="150dp">
+
+    </com.github.mikephil.charting.charts.LineChart>
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=" PPG signal"
+        android:drawableStart="@drawable/icons8_ecg_26"
+        android:textSize="18sp"
+        android:textColor="#FFF"
+        android:layout_marginTop="10dp"/>
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/PPG_lineChartId"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_height="150dp">
+
+    </com.github.mikephil.charting.charts.LineChart>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" Heart rate"
+            android:layout_weight="1"
+            android:drawableStart="@drawable/icons8_ecg_26"
+            android:textSize="18sp"
+            android:textColor="#FFF"
+            android:layout_marginTop="10dp"/>
+        <TextView
+            android:id="@+id/heart_rate_value_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" value"
+            android:layout_weight="1"
+            android:textSize="18sp"
+            android:textColor="#FFF"
+            android:layout_marginTop="10dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" Blood pressure"
+            android:drawableStart="@drawable/icons8_ecg_26"
+            android:textSize="18sp"
+            android:layout_weight="1"
+            android:textColor="#FFF"
+            android:layout_marginTop="10dp"/>
+        <TextView
+            android:id="@+id/blood_pressure_value_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" value"
+            android:textSize="18sp"
+            android:layout_weight="1"
+            android:textColor="#FFF"
+            android:layout_marginTop="10dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" Temperature"
+            android:drawableStart="@drawable/icons8_ecg_26"
+            android:textSize="18sp"
+            android:textColor="#FFF"
+            android:layout_weight="1"
+            android:layout_marginTop="10dp"/>
+        <TextView
+            android:id="@+id/temperature_value_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" value"
+            android:textSize="18sp"
+            android:layout_weight="1"
+            android:textColor="#FFF"
+            android:layout_marginTop="10dp"/>
+    </LinearLayout>
+
+
+</LinearLayout>

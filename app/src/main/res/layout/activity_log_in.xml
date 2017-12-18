@@ -10,7 +10,7 @@
     <EditText
         android:id="@+id/logInEmailID"
         android:layout_width="339dp"
-        android:layout_height="31dp"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="50dp"
         android:layout_marginStart="50dp"
         android:drawableStart="@drawable/ic_action_email"
@@ -18,24 +18,26 @@
         android:hint="@string/emailHint"
         android:inputType="textEmailAddress"
         android:textAlignment="textStart"
+        android:textColor="#FFF"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColorHint="@color/place_autocomplete_prediction_secondary_text"
+        android:textColorLink="@color/cast_libraries_material_featurehighlight_text_body_color"
         android:textCursorDrawable="@drawable/cursor_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.469"
-        tools:layout_editor_absoluteY="227dp" />
+        app:layout_constraintVertical_bias="0.469" />
 
     <EditText
         android:id="@+id/logInPassID"
         android:layout_width="339dp"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="50dp"
         android:layout_marginStart="50dp"
         android:ems="10"
+        android:textColor="#FFF"
         android:drawableStart="@drawable/ic_action_lock"
         android:hint="@string/passHint"
         android:inputType="textPassword"
@@ -78,7 +80,7 @@
 
     </com.shobhitpuri.custombuttons.GoogleSignInButton>-->
 
-    <ImageView
+    <!--<ImageView
         android:contentDescription="@null"
         android:id="@+id/imageView"
         android:layout_width="230dp"
@@ -89,5 +91,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.073"/>
+        app:layout_constraintVertical_bias="0.073"/>-->
+
+    <TextView
+        android:id="@+id/needAccountId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/needAccount"
+        android:textColor="#FFF"
+        android:textSize="18sp"
+        android:textColorLink="@color/cast_libraries_material_featurehighlight_text_body_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.946" />
 </android.support.constraint.ConstraintLayout>
